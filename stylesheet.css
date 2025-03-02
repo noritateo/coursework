@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+body {
+	font-family: "Lexend", sans-serif;
+}
+
+.header-card {
+  background-color: #854848;
+  padding: 40px;
+	text-align: center;
+}
+
+.question-card {
+  background-color: #488562;
+  padding: 50px;
+  text-align: center;
+}
+
+.answer-card {  
+  background-color: #485185;
+  padding: 50px;
+  text-align: center;
+}
+
+button {
+	overflow-wrap: break-word;
+	background-color: #3d87d0;
+	width: 100%;
+	padding: 20px;
+	margin: 10px 0px;
+	border-radius: 40px;
+	color: #fff;
+	border: 1px solid #4b82d5;
+}
+
+button:hover {
+	background-color: #0d3a67;
+	cursor: pointer;
+}
+
+
