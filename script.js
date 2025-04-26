@@ -15,6 +15,7 @@ let currentTrack = 0;
 let countdownTimer;
 
 function playSong() {
+  resetOptions();
   var correctArtist = artists[currentTrack % 10];
   var url = "https://itunes.apple.com/search?term=" + encodeURIComponent(correctArtist) + "&media=music&entity=song&limit=10";
   
@@ -37,7 +38,6 @@ function playSong() {
 }
 
 function startCountdown() {
-
   let counter = 5; 
   showInfo.textContent = counter;
 
@@ -72,7 +72,46 @@ function showOptions(correctArtist) {
   option2.textContent = allOptions[1];
   option3.textContent = allOptions[2];
   option4.textContent = allOptions[3];
+
+  option1.onclick = function() { checkAnswer(option1, correctArtist); };
+  option2.onclick = function() { checkAnswer(option2, correctArtist); };
+  option3.onclick = function() { checkAnswer(option3, correctArtist); };
+  option4.onclick = function() { checkAnswer(option4, correctArtist); };
+}
+
+function checkAnswer(selectedOption, correctArtist) {
+  clearInterval(countdownTimer); 
+
+  const allOptions = [option1, option2, option3, option4];
+
+  allOptions.forEach(function(option) {
+    option.disabled = true;
+
+    if (option.textContent === correctArtist) {
+      option.style.backgroundColor = 'green';
+    }
+  });
+
+  if (selectedOption.textContent === correctArtist) {
+    showInfo.textContent = "Correct!";
+  } else {
+    selectedOption.style.backgroundColor = 'red';
+    showInfo.textContent = "Wrong!";
+  }
+
+  setTimeout(function() {
+    playSong();
+  }, 5000);
+}
+
+
+function resetOptions() {
+  const allOptions = [option1, option2, option3, option4];
+
+  allOptions.forEach(function(singleOption) {
+    singleOption.disabled = false;
+    singleOption.style.backgroundColor = '';
+  });
 }
 
 playSong();
-
