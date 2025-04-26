@@ -1,13 +1,31 @@
 const audio = document.getElementById('audio-player');
 
-// List of audio files
-const trackList = [
-    'https://thetestdata.com/assets/audio/mp3/thetestdata-sample-mp3-1.mp3',  // replace with your actual file paths
-    'https://thetestdata.com/assets/audio/mp3/thetestdata-sample-mp3-2.mp3',
-    'https://thetestdata.com/assets/audio/mp3/thetestdata-sample-mp3-3.mp3'
-];
-
+var artists = [
+    "Adele", "Coldplay", "Bruno Mars", "Taylor Swift", 
+    "Lady Gaga", "The Weeknd", "Billie Eilish", "Imagine Dragons", 
+    "Rihanna", "Post Malone"
+  ];
+  
 let currentTrack = 0;
 
-// Load the first track
-audio.src = trackList[currentTrack];
+function playSong() {
+    var correctArtist = artists[currentTrack % 10];
+    var url = "https://itunes.apple.com/search?term=" + encodeURIComponent(correctArtist) + "&media=music&entity=song&limit=10";
+  
+    fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      var song = data.results[0];
+  
+      audio.src = song.previewUrl; 
+      audio.load();
+      audio.play();
+
+      currentTrack++;  
+    });
+}
+
+
+playSong();

@@ -6,19 +6,19 @@ body {
 
 .header-card {
   background-color: #854848;
-  padding: 40px;
+  padding: 30px;
 	text-align: center;
 }
 
 .question-card {
   background-color: #488562;
-  padding: 50px;
+  padding: 30px;
   text-align: center;
 }
 
 .answer-card {  
   background-color: #485185;
-  padding: 50px;
+  padding: 30px;
   text-align: center;
 }
 
@@ -38,4 +38,6 @@ button:hover {
 	cursor: pointer;
 }
 
-
+#audio-player {
+  display: block;
+}
