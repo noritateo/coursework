@@ -1,5 +1,9 @@
 const audio = document.getElementById('audio-player');
 const showInfo = document.getElementById('show-info');
+const option1 = document.getElementById('option1');
+const option2 = document.getElementById('option2');
+const option3 = document.getElementById('option3');
+const option4 = document.getElementById('option4');
 
 var artists = [
     "Adele", "Coldplay", "Bruno Mars", "Taylor Swift", 
@@ -28,7 +32,7 @@ function playSong() {
       currentTrack++;  
 
       startCountdown();
-
+      showOptions(correctArtist);
     });
 }
 
@@ -52,4 +56,23 @@ function startCountdown() {
   }, 1000);
 }
 
+function showOptions(correctArtist) {
+  var correctAnswer = correctArtist;
+  var wrongAnswer1 = artists[(currentTrack + 1) % 10];
+  var wrongAnswer2 = artists[(currentTrack + 2) % 10];
+  var wrongAnswer3 = artists[(currentTrack + 3) % 10];
+
+  var allOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3];
+
+  allOptions.sort(function() {
+    return Math.random() - 0.5;
+  });
+
+  option1.textContent = allOptions[0];
+  option2.textContent = allOptions[1];
+  option3.textContent = allOptions[2];
+  option4.textContent = allOptions[3];
+}
+
 playSong();
+
