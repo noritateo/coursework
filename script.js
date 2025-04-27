@@ -32,26 +32,23 @@ function playSong() {
 
       currentTrack++;  
 
-      startCountdown();
+      startCountdown(correctArtist);
       showOptions(correctArtist);
     });
 }
 
-function startCountdown() {
-  let counter = 5; 
+function startCountdown(correctArtist) {
+  let counter = 15; 
   showInfo.textContent = counter;
 
   countdownTimer = setInterval(function() {
     counter--;
     if (counter > 0) {
       showInfo.textContent = counter;
-    } else {
+    } 
+    else {
       clearInterval(countdownTimer);
-      showInfo.textContent = "Game over!";
-
-      setTimeout(function() {
-        playSong(); 
-      }, 5000);
+      showAnswer(correctArtist);
     }
   }, 1000);
 }
@@ -101,9 +98,28 @@ function checkAnswer(selectedOption, correctArtist) {
 
   setTimeout(function() {
     playSong();
-  }, 5000);
+  }, 4000);
 }
 
+function showAnswer(correctArtist) {
+  clearInterval(countdownTimer); 
+
+  const allOptions = [option1, option2, option3, option4];
+
+  allOptions.forEach(function(option) {
+    option.disabled = true;
+
+    if (option.textContent === correctArtist) {
+      option.style.backgroundColor = 'green';
+    }
+  });
+
+  showInfo.textContent = "Time's up!";
+
+  setTimeout(function() {
+    playSong();
+  }, 4000);
+}
 
 function resetOptions() {
   const allOptions = [option1, option2, option3, option4];
@@ -113,5 +129,6 @@ function resetOptions() {
     singleOption.style.backgroundColor = '';
   });
 }
+
 
 playSong();

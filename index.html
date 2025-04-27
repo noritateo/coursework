@@ -2,15 +2,42 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="stylesheet.css" type="text/css"/>
-	<title>Music Quiz</title>
+	<title>Sound Check</title>
 
 	<div class="header-card">		
-		<h1>Music Quiz</h1>
+		<h1>Sound Check</h1>
 	</div>
 	
 	<div class="question-card">
-		Ready to start?!
-		<form action="quiz.html">
-			<button>Yes!</button>
-		</form>
+		<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWE5OGt0ZjZobzA4dDRvaDg3eTZtaGtsbGl2OGZmdDV0enI2b2EzdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/NE9vKX6rFs3vRFL5pY/giphy.gif"class="index-gif">
+
+
+		<a href="mode.html">
+			<button>Start Game!</button>
+		</a>
+
+		<button id="myBtn">Instructions</button>
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h1>Welcome!</h1>
+				<p>
+				Ever felt like you've heard this tune before somewhere,
+				and screamed "I know this!", humming along to the chorus
+				before you remember the song title? This is the game version
+				for music lovers of all ages. Challenge yourself or your
+				friends — either way, it's going to be fun! Enjoy!
+				</p>
+
+				<h1>Instructions</h1>
+				<p>
+				1. Start the game<br>
+				2. Pick a mode<br>
+				3. You have 15 seconds to guess!<br><br>
+				<i>PS: "Guess the Song" mode is coming soon!</i>
+				</p>
+			</div>
+		</div>
 	</div>
+
+<script src="modal.js"></script>
