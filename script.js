@@ -6,17 +6,35 @@ const option3 = document.getElementById('option3');
 const option4 = document.getElementById('option4');
 
 var artists = [
-    "Adele", "Coldplay", "Bruno Mars", "Taylor Swift", 
-    "Lady Gaga", "The Weeknd", "Billie Eilish", "Imagine Dragons", 
-    "Rihanna", "Post Malone"
-];
+  
+  "Kaoma", "Scatman John", "Shaggy", "Modern Talking", "Survivor",
+  "TLC", "Chaka Khan", "All-4-One", "Ray Parker Jr.", "Kenny Loggins",
+  "Pitbull", "Britney Spears", "Elvis Presley", "Savage Garden", "Air Supply",
+  "Collin Raye", "M2M", "Gloria Gaynor", "Richard Marx", "Ricky Martin",
+  "Europe", "Billy Ocean", "Bonnie Tyler", "Earth, Wind & Fire", "John Lennon",
+  "The Police", "Take That", "Magic", "One Republic", "Alan Walker",
+  "Clean Bandit", "Alphaville", "Sia", "Lorde", "Maroon 5",
+  "Coolio", "Bastille", "Katy Perry", "Michael Bolton", "The Pussycat Dolls",
+  "P!nk", "Kelly Clarkson", "Hinder", "Usher", "Cyndi Lauper",
+  "Toni Braxton", "Amy Winehouse", "Extreme", "Nelly Furtado", "Linkin Park",
+  "Scorpions", "Alicia Keys", "A-ha", "Keane", "The Calling",
+  "Hoobastank", "Aerosmith", "The Cranberries", "Radiohead", "The Verve",
+  "R.E.M", "4 Non Blondes", "Maneskin", "Eagles", "Santana",
+  "Dr Dre", "Blur", "Nirvana", "No Doubt", "Gun N' Roses",
+  "Wham!", "The Beatles",  "Avril Lavigne", "Louis Armstrong", "Phil Collins", 
+  "The Jackson 5", "Aqua", "Coldplay",  "Bruno Mars",  "Michael Bublé", 
+  "Simple Plan", "Eminem", "Billie Eilish", "Evanescence", "Post Malone",
+  "Backstreet Boys", "NSYNC", "Bee Gees", "AC/DC", "Fleetwood Mac",
+  "Arctic Monkeys", "Mariah Carey", "Green Day", "Oasis", "Goo Goo Dolls", 
+  "Paramore", "Spice Girls", "Abba", "Bon Jovi", "Madonna"
+]
   
 let currentTrack = 0;
 let countdownTimer;
 
 function playSong() {
   resetOptions();
-  var correctArtist = artists[currentTrack % 10];
+  var correctArtist = artists[currentTrack % artists.length];
   var url = "https://itunes.apple.com/search?term=" + encodeURIComponent(correctArtist) + "&media=music&entity=song&limit=10";
   
   fetch(url)
@@ -55,9 +73,9 @@ function startCountdown(correctArtist) {
 
 function showOptions(correctArtist) {
   var correctAnswer = correctArtist;
-  var wrongAnswer1 = artists[(currentTrack + 1) % 10];
-  var wrongAnswer2 = artists[(currentTrack + 2) % 10];
-  var wrongAnswer3 = artists[(currentTrack + 3) % 10];
+  var wrongAnswer1 = artists[(currentTrack + 1) % artists.length];
+  var wrongAnswer2 = artists[(currentTrack + 5) % artists.length];
+  var wrongAnswer3 = artists[(currentTrack + 10) % artists.length];
 
   var allOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3];
 
@@ -98,7 +116,7 @@ function checkAnswer(selectedOption, correctArtist) {
 
   setTimeout(function() {
     playSong();
-  }, 4000);
+  }, 3000);
 }
 
 function showAnswer(correctArtist) {
@@ -118,7 +136,7 @@ function showAnswer(correctArtist) {
 
   setTimeout(function() {
     playSong();
-  }, 4000);
+  }, 3000);
 }
 
 function resetOptions() {
