@@ -56,6 +56,11 @@ button:hover {
   box-shadow: 0 0 8px #45A29E;
 }
 
+button:disabled {
+  background-color: #506463;
+  cursor: not-allowed;
+}
+
 button:disabled:hover {
   cursor: not-allowed;
 }
@@ -152,6 +157,12 @@ button:disabled:hover {
   button {
     font-size: 14px; 
     padding: 10px;  
+  }
+
+  button:active {
+  background-color: #45A29E;
+  cursor: pointer;
+  box-shadow: 0 0 8px #45A29E;
   }
 
   .modal-content {
