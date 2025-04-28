@@ -50,6 +50,11 @@ function playSong() {
     return response.json();
     })
     .then(function(data) {
+      if (!data.results.length) {
+        skipToNext();
+        return;
+      }
+
       var song = data.results[0];
   
       audio.src = song.previewUrl; 
@@ -184,7 +189,7 @@ function showStartModal() {
 
     setTimeout(function() {
       playSong();
-    }, 200); 
+    }, 400); 
   };
 }
 

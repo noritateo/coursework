@@ -48,6 +48,7 @@ button {
   border-radius: 20px;
   color: #0B0C10;
   box-shadow: 0 0 8px #66FCF1;
+  transition: transform 0.3s ease;
 }
 
 button:hover {
@@ -56,13 +57,12 @@ button:hover {
   box-shadow: 0 0 8px #45A29E;
 }
 
-button:disabled {
-  background-color: #506463;
+button:disabled:hover {
   cursor: not-allowed;
 }
 
-button:disabled:hover {
-  cursor: not-allowed;
+button:active {
+  transform: scale(0.9);
 }
 
 .home-button {
@@ -159,10 +159,12 @@ button:disabled:hover {
     padding: 10px;  
   }
 
-  button:active {
-  background-color: #45A29E;
+  button:active,
+  button:hover,
+  button:focus {
+  background-color: #66FCF1;
   cursor: pointer;
-  box-shadow: 0 0 8px #45A29E;
+  box-shadow: 0 0 8px #66FCF1;
   }
 
   .modal-content {
@@ -173,13 +175,15 @@ button:disabled:hover {
 
   .index-gif,
   .mode-gif {
-    width: 50%; 
+    width: 60%; 
     padding: 10px;
   }
 
   .home-button {
-    font-size: 11px; 
-    position: sticky;
-    margin: 10px auto 0px auto;
+    font-size: 10px; 
+    position: absolute; 
+    top: 3px;
+    left: 15px;
+    padding: 5px 10px;
   }
 }
