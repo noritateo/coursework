@@ -1,12 +1,16 @@
 const audio = document.getElementById('audio-player');
 const showInfo = document.getElementById('show-info');
-const option1 = document.getElementById('option1');
-const option2 = document.getElementById('option2');
-const option3 = document.getElementById('option3');
-const option4 = document.getElementById('option4');
 const total = document.getElementById('total');
-const modal = document.getElementById("quiz-modal");
+const scoreModal = document.getElementById("score-modal");
 const goHome = document.getElementById("go-home");
+const startModal = document.getElementById("start-modal");
+const startQuiz= document.getElementById("start-quiz");
+const allOptions = [
+  document.getElementById('option1'), 
+  document.getElementById('option2'), 
+  document.getElementById('option3'), 
+  document.getElementById('option4')
+];
 
 var artists = [
   "Kaoma", "Scatman John", "Shaggy", "Modern Talking", "Survivor",
@@ -81,33 +85,29 @@ function showOptions(correctArtist) {
   var wrongAnswer2 = artists[(currentTrack + 5) % artists.length];
   var wrongAnswer3 = artists[(currentTrack + 10) % artists.length];
 
-  var allOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3];
+  var trueOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3];
 
-  allOptions.sort(function() {
+  trueOptions.sort(function() {
     return Math.random() - 0.5;
   });
 
-  option1.textContent = allOptions[0];
-  option2.textContent = allOptions[1];
-  option3.textContent = allOptions[2];
-  option4.textContent = allOptions[3];
+  allOptions.forEach(function(singleOption, index) {
+    singleOption.textContent = trueOptions[index];
 
-  option1.onclick = function() { checkAnswer(option1, correctArtist); };
-  option2.onclick = function() { checkAnswer(option2, correctArtist); };
-  option3.onclick = function() { checkAnswer(option3, correctArtist); };
-  option4.onclick = function() { checkAnswer(option4, correctArtist); };
+    singleOption.onclick = function() {
+      checkAnswer(singleOption, correctArtist);
+    };
+  });
 }
 
 function checkAnswer(selectedOption, correctArtist) {
   clearInterval(countdownTimer); 
 
-  const allOptions = [option1, option2, option3, option4];
+  allOptions.forEach(function(singleOption) {
+    singleOption.disabled = true;
 
-  allOptions.forEach(function(option) {
-    option.disabled = true;
-
-    if (option.textContent === correctArtist) {
-      option.style.backgroundColor = 'green';
+    if (singleOption.textContent === correctArtist) {
+      singleOption.style.backgroundColor = 'green';
     }
   });
 
@@ -132,13 +132,11 @@ function checkAnswer(selectedOption, correctArtist) {
 function showAnswer(correctArtist) {
   clearInterval(countdownTimer); 
 
-  const allOptions = [option1, option2, option3, option4];
+  allOptions.forEach(function(singleOption) {
+    singleOption.disabled = true;
 
-  allOptions.forEach(function(option) {
-    option.disabled = true;
-
-    if (option.textContent === correctArtist) {
-      option.style.backgroundColor = 'green';
+    if (singleOption.textContent === correctArtist) {
+      singleOption.style.backgroundColor = 'green';
     }
   });
 
@@ -154,7 +152,6 @@ function showAnswer(correctArtist) {
 }
 
 function resetOptions() {
-  const allOptions = [option1, option2, option3, option4];
 
   allOptions.forEach(function(singleOption) {
     singleOption.disabled = false;
@@ -166,7 +163,29 @@ function showFinalModal() {
   clearInterval(countdownTimer);
   audio.pause();
   document.getElementById('modal-points').textContent = "Your Final Score: " + points;
-  modal.style.display = "block";
+  scoreModal.style.display = "block";
 }
 
-playSong();
+function showStartModal() {
+
+  allOptions.forEach(function(singleOption) {
+    singleOption.style.display = "none";
+  });
+
+  startModal.style.display = "block";
+  startQuiz.style.display = "block";
+
+  startQuiz.onclick = function() {
+    startModal.style.display = "none";
+    
+    allOptions.forEach(function(singleOption) {
+      singleOption.style.display = "block";
+    });
+
+    setTimeout(function() {
+      playSong();
+    }, 200); 
+  };
+}
+
+  showStartModal();
