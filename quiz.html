@@ -7,7 +7,7 @@
 	<div class="header-card">
 
 		<a href="index.html">
-			<button class="leave-button">Leave</button>
+			<button class="home-button">Home</button>
 		</a>
 
 		<h1>Sound Check</h1>
@@ -16,7 +16,7 @@
 	<div class="question-card">
 		<h2>Guess the artist!</h2>
 		<div id="show-info" class="show-info"></div>
-		<br>
+		<div id="total">Your Score: 0</div>
 		<audio id="audio-player" controls style="width: 100%;"></audio>
 	</div>
 
@@ -26,5 +26,15 @@
    		<button id="option3"></button>
     	<button id="option4"></button>
 	</div>	
+
+	<div id="quiz-modal" class="modal">
+  	<div class="modal-content">
+		<h1>Congratulations! 🥳</h1>
+    <p id="modal-points"></p>
+		<a href="index.html">
+			<button class="go-home-btn">Return to homepage</button>
+		</a>
+		</div>
+	</div>
 
 	<script src="script.js"></script>

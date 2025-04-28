@@ -71,7 +71,7 @@ button:disabled:hover {
   cursor: not-allowed;
 }
 
-.leave-button {
+.home-button {
   background-color: transparent;
   width: auto;
   border-radius: 8px;
@@ -83,7 +83,7 @@ button:disabled:hover {
   padding: 5px 10px;
 }
 
-.leave-button:hover {
+.home-button:hover {
   background-color: rgba(16, 163, 156, 0.767);
   color: #1F2833;
 }
@@ -113,17 +113,18 @@ button:disabled:hover {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   color: #C5C6C7;
+  text-align: center;
 }
 
-.close {
+.modal-close {
   color: #C5C6C7;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.modal-close:hover,
+.modalclose:focus {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
@@ -134,9 +135,13 @@ button:disabled:hover {
   padding: 40px;
 }
 
-.mode-gif{
+.mode-gif {
   width: 40%;
   padding: 10px;
   display: flexbox;
   flex-direction: row;
+}
+
+.go-home-btn {
+  width: 40%;
 }

@@ -1,12 +1,12 @@
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0];
+var modal = document.getElementById("index-modal");
+var modalBtn = document.getElementById("index-btn");
+var modalSpan = document.getElementsByClassName("modal-close")[0];
 
-btn.onclick = function() {
+modalBtn.onclick = function() {
   modal.style.display = "block";
 }
 
-span.onclick = function() {
+modalSpan.onclick = function() {
   modal.style.display = "none";
 }
 

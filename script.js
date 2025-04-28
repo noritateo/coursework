@@ -4,9 +4,11 @@ const option1 = document.getElementById('option1');
 const option2 = document.getElementById('option2');
 const option3 = document.getElementById('option3');
 const option4 = document.getElementById('option4');
+const total = document.getElementById('total');
+const modal = document.getElementById("quiz-modal");
+const goHome = document.getElementById("go-home");
 
 var artists = [
-  
   "Kaoma", "Scatman John", "Shaggy", "Modern Talking", "Survivor",
   "TLC", "Chaka Khan", "All-4-One", "Ray Parker Jr.", "Kenny Loggins",
   "Pitbull", "Britney Spears", "Elvis Presley", "Savage Garden", "Air Supply",
@@ -31,6 +33,8 @@ var artists = [
   
 let currentTrack = 0;
 let countdownTimer;
+let points = 0;
+let counter = 15;
 
 function playSong() {
   resetOptions();
@@ -56,7 +60,7 @@ function playSong() {
 }
 
 function startCountdown(correctArtist) {
-  let counter = 15; 
+  counter = 15; 
   showInfo.textContent = counter;
 
   countdownTimer = setInterval(function() {
@@ -109,14 +113,20 @@ function checkAnswer(selectedOption, correctArtist) {
 
   if (selectedOption.textContent === correctArtist) {
     showInfo.textContent = "Correct!";
+    points += 10 * counter; 
+    total.textContent = "Your Score: " + points;
   } else {
     selectedOption.style.backgroundColor = 'red';
     showInfo.textContent = "Wrong!";
   }
 
-  setTimeout(function() {
-    playSong();
-  }, 3000);
+  if (currentTrack === artists.length) {
+    showFinalModal();
+  } else {
+    setTimeout(function() {
+      playSong();
+    }, 3000);
+  }
 }
 
 function showAnswer(correctArtist) {
@@ -134,9 +144,13 @@ function showAnswer(correctArtist) {
 
   showInfo.textContent = "Time's up!";
 
-  setTimeout(function() {
-    playSong();
-  }, 3000);
+  if (currentTrack === artists.length) {
+    showFinalModal();
+  } else {
+    setTimeout(function() {
+      playSong();
+    }, 3000);
+  }
 }
 
 function resetOptions() {
@@ -148,5 +162,11 @@ function resetOptions() {
   });
 }
 
+function showFinalModal() {
+  clearInterval(countdownTimer);
+  audio.pause();
+  document.getElementById('modal-points').textContent = "Your Final Score: " + points;
+  modal.style.display = "block";
+}
 
 playSong();
