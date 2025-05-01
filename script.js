@@ -12,7 +12,7 @@ const allOptions = [
   document.getElementById('option4')
 ];
 
-var artists = [
+const artists = [
   "Kaoma", "Scatman John", "Shaggy", "Modern Talking", "Survivor",
   "TLC", "Chaka Khan", "All-4-One", "Ray Parker Jr.", "Kenny Loggins",
   "Pitbull", "Britney Spears", "Elvis Presley", "Savage Garden", "Air Supply",
@@ -45,6 +45,11 @@ function playSong() {
   var correctArtist = artists[currentTrack % artists.length];
   var url = "https://itunes.apple.com/search?term=" + encodeURIComponent(correctArtist) + "&media=music&entity=song&limit=10";
   
+  function skipToNext() {
+  currentTrack++;
+  playSong();
+  }
+
   fetch(url)
   .then(function(response) {
     return response.json();
