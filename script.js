@@ -42,34 +42,34 @@ let counter = 15;
 
 function playSong() {
   resetOptions();
-  var correctArtist = artists[currentTrack % artists.length];
-  var url = "https://itunes.apple.com/search?term=" + encodeURIComponent(correctArtist) + "&media=music&entity=song&limit=10";
-  
+
+  const correctArtist = artists[currentTrack % artists.length];
+  const url = "https://itunes.apple.com/search?term=" + encodeURIComponent(correctArtist) + "&media=music&entity=song&attribute=artistTerm&limit=10";
+
   function skipToNext() {
-  currentTrack++;
-  playSong();
+    currentTrack++;
+    playSong();
   }
 
   fetch(url)
-  .then(function(response) {
-    return response.json();
+    .then(function(response) {
+      return response.json();
     })
     .then(function(data) {
-      if (!data.results.length) {
+      const song = data.results.find(result => result.previewUrl);
+      if (!song) {
         skipToNext();
         return;
       }
 
-      var song = data.results[0];
-  
-      audio.src = song.previewUrl; 
+      audio.src = song.previewUrl;
       audio.load();
       audio.play();
 
-      currentTrack++;  
-
       startCountdown(correctArtist);
       showOptions(correctArtist);
+
+      currentTrack++;  
     });
 }
 
